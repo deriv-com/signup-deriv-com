@@ -41,11 +41,14 @@ export class ApiManager {
     public init(lang?: string) {
         if (!this.ready) {
             if (!this.socket) {
+                const pathname = isBrowser() ? window.location.pathname : ''
+                const isAcademySignup = pathname.includes('academy-complete-signup')
 
-                const pathname = isBrowser() ? window.location.pathname : '';
-                const isAcademySignup = pathname.includes('/academy-signup');
-
-                const language = isAcademySignup ? 'en' : (lang === 'ach' ? getCrowdin() : lang?.replace('-', '_'));
+                const language = isAcademySignup
+                    ? 'en'
+                    : lang === 'ach'
+                    ? getCrowdin()
+                    : lang?.replace('-', '_')
 
                 const socket_url = getSocketURL()
                 const app_id = getAppId()
@@ -104,10 +107,10 @@ export class ApiManager {
     }
 
     public reset(language: string) {
-        const pathname = isBrowser() ? window.location.pathname : '';
-        const isAcademySignup = pathname.includes('/academy-signup');
+        const pathname = isBrowser() ? window.location.pathname : ''
+        const isAcademySignup = pathname.includes('academy-complete-signup')
 
-        const finalLanguage = isAcademySignup ? 'en' : language;
+        const finalLanguage = isAcademySignup ? 'en' : language
 
         const socket_url = getSocketURL()
         const app_id = getAppId()

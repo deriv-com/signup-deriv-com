@@ -57,7 +57,7 @@ Moreover, having these extensions will help you to speed up the development proc
 2.  **Clone using SSH**
 
     ```sh
-    git clone git@github.com:your-github-username/deriv-com.git
+    git clone git@github.com:your-github-username/signup-deriv-com.git
     ```
 
 3.  **Enter project directory**

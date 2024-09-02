@@ -41,7 +41,12 @@ export class ApiManager {
     public init(lang?: string) {
         if (!this.ready) {
             if (!this.socket) {
-                const language = lang === 'ach' ? getCrowdin() : lang?.replace('-', '_')
+
+                const pathname = isBrowser() ? window.location.pathname : '';
+                const isAcademySignup = pathname.includes('/academy-signup');
+
+                const language = isAcademySignup ? 'en' : (lang === 'ach' ? getCrowdin() : lang?.replace('-', '_'));
+
                 const socket_url = getSocketURL()
                 const app_id = getAppId()
                 const websocket_connection_url = `${socket_url}?app_id=${app_id}&l=${language}&brand=${brand_name.toLowerCase()}`
@@ -99,9 +104,14 @@ export class ApiManager {
     }
 
     public reset(language: string) {
+        const pathname = isBrowser() ? window.location.pathname : '';
+        const isAcademySignup = pathname.includes('/academy-signup');
+
+        const finalLanguage = isAcademySignup ? 'en' : language;
+
         const socket_url = getSocketURL()
         const app_id = getAppId()
-        const websocket_connection_url = `${socket_url}?app_id=${app_id}&l=${language}&brand=${brand_name.toLowerCase()}`
+        const websocket_connection_url = `${socket_url}?app_id=${app_id}&l=${finalLanguage}&brand=${brand_name.toLowerCase()}`
 
         this.derivApi.disconnect()
         this.socket.close()

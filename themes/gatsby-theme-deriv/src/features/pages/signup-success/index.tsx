@@ -1,7 +1,6 @@
 import React from 'react'
 import Layout from 'features/components/templates/layout'
 import { signup_success_wrapper, signup_success_description } from './signup-success.module.scss'
-import StaticNav from 'features/components/templates/navigation/static-nav'
 import Flex from 'features/components/atoms/flex-box'
 import Typography from 'features/components/atoms/typography'
 import { Localize } from 'components/localization'
@@ -9,6 +8,7 @@ import SignupImage from 'images/common/sign-up/response-email.png'
 import Image from 'features/components/atoms/image'
 import Link from 'features/components/atoms/link'
 import { BuildVariantType } from 'features/types'
+import AcademyNav from 'features/components/templates/navigation/academy-nav'
 
 type SignupProps = BuildVariantType & {
     email?: string
@@ -17,7 +17,7 @@ type SignupProps = BuildVariantType & {
 const SignUpSuccessContainer = ({ email, region }: SignupProps) => {
     return (
         <Layout region={region}>
-            <StaticNav />
+            <AcademyNav />
             <Flex.Box
                 container="fluid"
                 direction="col"

@@ -63,7 +63,7 @@ Moreover, having these extensions will help you to speed up the development proc
 3.  **Enter project directory**
 
     ```sh
-    cd deriv-com
+    cd signup-deriv-com
     ```
 
 4.  **Install your dependencies:**

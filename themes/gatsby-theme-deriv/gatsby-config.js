@@ -345,6 +345,6 @@ module.exports = {
                 analyzerMode: 'disabled',
                 generateStatsFile: process.env.GENERATE_JSON_STATS === 'true',
             },
-        },
+        }
     ],
 }

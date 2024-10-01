@@ -169,7 +169,7 @@ jobs:
                   recreate: true
 
             - name: Upload PR information to artifact
-              uses: actions/upload-artifact@v4
+              uses: actions/upload-artifact@c24449f33cd45d4826c6702db7e49f7cdb9b551d
               with:
                   name: 'pr-${{github.run_id}}'
                   path: .pr

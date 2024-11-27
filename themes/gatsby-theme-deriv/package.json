@@ -47,7 +47,7 @@
     "embla-carousel-react": "8.0.0-rc11",
     "eslint-import-resolver-node": "^0.3.9",
     "extend": "^3.0.2",
-    "firebase": "^9.23.0",
+    "firebase": "^10.9.0",
     "formik": "^2.4.5",
     "gatsby-plugin-anchor-links": "^1.2.1",
     "gatsby-plugin-canonical-urls": "^5.12.0",

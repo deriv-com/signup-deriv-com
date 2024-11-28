@@ -8,6 +8,7 @@
         "@commitlint/config-conventional": "^16.2.4",
         "@deriv/api-types": "^1.0.137",
         "@deriv-com/analytics": "1.27.0",
+        "@deriv-com/utils":"0.0.42",
         "@graphql-codegen/cli": "^5.0.2",
         "@graphql-codegen/typescript": "^2.8.8",
         "@graphql-codegen/typescript-operations": "^2.5.13",

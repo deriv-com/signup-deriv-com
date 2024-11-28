@@ -139,16 +139,5 @@
     "workspaces": [
         "./sites/*",
         "./themes/*"
-    ],
-    "dependencies": {
-        "axios": "^1.7.4",
-        "body-parser": "^1.20.3",
-        "braces": "^3.0.3",
-        "debug": "^2.6.9",
-        "dset": "^3.1.4",
-        "html-minifier": "^4.0.0",
-        "ip": "^2.0.1",
-        "path-to-regexp": "^0.1.10",
-        "webpack-dev-middleware": "^5.3.4"
-    }
+    ]
 }

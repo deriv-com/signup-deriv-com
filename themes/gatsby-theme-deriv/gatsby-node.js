@@ -5,8 +5,8 @@ const path = require('path')
 const { exec } = require('child_process')
 const StylelintPlugin = require('stylelint-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
-const minify = require('html-minifier').minify;
-const fs = require('fs');
+const { minify } = require('html-minifier-terser')
+const fs = require('fs')
 
 const translations_cache = {}
 
@@ -48,7 +48,7 @@ const BuildPage = (page, actions, region) => {
     const who_we_are = /who-we-are/g.test(page.path)
     const is_cfds = /cfds/g.test(page.path)
     const is_options = /options/g.test(page.path)
-    const is_academy_signup = /academy-signup/g.test(page.path);
+    const is_academy_signup = /academy-signup/g.test(page.path)
 
     if (is_careers) {
         createRedirect({
@@ -379,14 +379,14 @@ const BuildPage = (page, actions, region) => {
                 toPath: `/academy-signup/`,
                 redirectInBrowser: true,
                 isPermanent: true,
-            });
+            })
         }
         return current_page
     })
 }
 exports.onCreatePage = ({ page, actions }, options) => {
     const { deletePage } = actions
-    const {region} = options;
+    const { region } = options
     const isProduction = process.env.GATSBY_ENV === 'production'
     const pagesToBuild = process.env.GATSBY_BUILD_PAGES
     if (pagesToBuild) {
@@ -503,32 +503,38 @@ const minificationOptions = {
     useShortDoctype: true,
 }
 
-exports.onPostBuild = (_, {buildDirPath}) => {
+exports.onPostBuild = (_, { buildDirPath }) => {
     return new Promise((resolve, reject) => {
-        // do async work
-        console.log('=== HMTL minification started ===');
+        console.log('=== HTML minification started ===')
 
-        console.log('full path', buildDirPath);
-        fs.readFile(buildDirPath, 'utf8', (err, inp) => {
+        console.log('Full path:', buildDirPath)
+        fs.readFile(buildDirPath, 'utf8', async (err, inp) => {
+            // Use async/await for minify
             if (err) {
-                reject();
-                throw err;
+                reject(err)
+                throw err
             }
-            var result = minify(inp, minificationOptions);
-            var reducedPercentage = (
-                ((inp.length - result.length) / inp.length) *
-                100
-            ).toFixed(2);
-            console.log(`We have reduced index.html by ${reducedPercentage}%`);
 
-            fs.writeFile(buildDirPath, result, err2 => {
-                if (err2) {
-                    reject();
-                    throw err;
-                }
-                console.log('index.html has been saved!');
-                resolve();
-            });
-        });
-    });
-};
+            try {
+                const result = await minify(inp, minificationOptions) // Use async minify
+                const reducedPercentage = (
+                    ((inp.length - result.length) / inp.length) *
+                    100
+                ).toFixed(2)
+                console.log(`We have reduced the file by ${reducedPercentage}%`)
+
+                fs.writeFile(buildDirPath, result, (err2) => {
+                    if (err2) {
+                        reject(err2)
+                        throw err2
+                    }
+                    console.log('File has been saved!')
+                    resolve()
+                })
+            } catch (minifyError) {
+                reject(minifyError)
+                throw minifyError
+            }
+        })
+    })
+}

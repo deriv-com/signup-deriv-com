@@ -13,8 +13,8 @@ export default WithIntl()(SignupPage)
 
 export const Head = ({ pageContext }: TGatsbyHead) => (
     <SEO
-        title="_t_Easy And Free Sign Up | Online Trading | Deriv.com_t_"
-        description="_t_Signup to Deriv.com and trade online with as little as $1 USD on major currencies, stocks, indices, and commodities._t_"
+        title="_t_Sign up for exclusive trading courses | Deriv Academy_t_"
+        description="_t_Sign up for Deriv Academy to access trading courses. Create a free account and learn with expert modules on forex, Deriv MT5 and more. _t_"
         pageContext={pageContext}
     />
 )

@@ -26,7 +26,6 @@ env:
 jobs:
     release-production:
         timeout-minutes: 40
-        runs-on: Runner_16cores
         environment: production
         steps:
             - name: Checkout 🛎️
